@@ -147,7 +147,11 @@ def run_safety_invariants_suite():
     ))
     out_valid_crop = engine.analyze_line(InputLine(
         text="TEST", ocr_confidence=0.90,
-        image_crop=create_multiline_pixel_crop(lines=2)
+        image_crop=create_multiline_pixel_crop(lines=2),
+        bounding_boxes=[
+            {"x0": 5.0, "x1": 50.0, "y0": 2.0, "y1": 12.0, "text_start": 0, "text_end": 2},
+            {"x0": 5.0, "x1": 50.0, "y0": 16.0, "y1": 26.0, "text_start": 2, "text_end": 4}
+        ]
     ))
     
     inv6_passed = (

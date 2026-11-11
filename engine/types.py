@@ -1,7 +1,7 @@
 """
 Stage E1.1 Disentanglement Decision Engine - Type Definitions and State Grammar
-Frozen Specification Reference: e1_1_final_closure_amendment.md
-Remediation Round 2
+Frozen Specification Reference: e1_1_final_closure_amendment.md & e1_1_decision_output_state_matrix.md
+Remediation Round 5
 """
 
 from dataclasses import dataclass, field
@@ -10,9 +10,11 @@ from typing import List, Dict, Optional, Tuple, Any
 
 
 class EntityType(str, Enum):
-    MEDICINE_ROW = "MEDICINE_ROW"
+    MEDICINE_ENTRY = "MEDICINE_ENTRY"
+    MEDICINE_ROW = "MEDICINE_ROW"  # Canonical alias authorized by frozen specifications
     NON_MEDICINE_TEXT = "NON_MEDICINE_TEXT"
-    AMBIGUOUS_TEXT = "AMBIGUOUS_TEXT"
+    ABSTAIN_TYPE = "ABSTAIN_TYPE"
+    AMBIGUOUS_TEXT = "AMBIGUOUS_TEXT"  # Legacy alias retained for backwards compatibility
 
 
 class CountClass(str, Enum):
@@ -28,6 +30,7 @@ class BoundaryStatus(str, Enum):
     DISENTANGLED_BOUNDARY = "DISENTANGLED_BOUNDARY"
     PROVISIONAL_BOUNDARY = "PROVISIONAL_BOUNDARY"
     ABSTAIN_UNSUPPORTED_BOUNDARY = "ABSTAIN_UNSUPPORTED_BOUNDARY"
+    ABSTAIN_AMBIGUOUS_BOUNDARY = "ABSTAIN_AMBIGUOUS_BOUNDARY"
     ABSTAIN_UNRESOLVED_CONFLICT = "ABSTAIN_UNRESOLVED_CONFLICT"
     NON_APPLICABLE = "NON_APPLICABLE"
 
@@ -93,7 +96,7 @@ class DecisionOutput:
     axis2_count_class: CountClass
     axis3_boundary_status: BoundaryStatus
     axis4_reconstruction_status: ReconstructionStatus
-    
+
     # Mathematical Core Metrics
     hrs_score: float
     s_norm: float
@@ -101,26 +104,26 @@ class DecisionOutput:
     p_conflict: float
     p_chem: float
     p_ratio: float
-    
+
     # Gates and Sufficiency Metrics
     s_env: float
     s_env_inputs: Dict[str, Any]
     n_multi: int
     active_multi_groups: List[str]
     precedence_path: str
-    
+
     # Reconstructed Entities and Cuts
     reconstructed_spans: List[Tuple[int, int, str]]
     boundary_cut_indices: List[int]
     excluded_delimiters: List[Dict[str, Any]] = field(default_factory=list)
-    
+
     # Provenance and Traceability
     evidence_signals: Dict[str, float] = field(default_factory=dict)
     group_evaluations: Dict[str, GroupEvaluation] = field(default_factory=dict)
     geom_observation_state: GeomObservationState = GeomObservationState.GEOM_UNOBSERVED
     decision_reasons: List[str] = field(default_factory=list)
     input_text: str = ""
-    
+
     def as_tuple(self) -> Tuple[str, str, str, str]:
         return (
             self.axis1_entity_type.value,

@@ -1,0 +1,867 @@
+{
+  "timestamp": "2026-11-11T11:09:58.245179",
+  "overall_status": "ROUND_5_REMEDIATION_ALL_PASS",
+  "syntax_verification": {
+    "all_passed": true,
+    "compiled_count": 12,
+    "failed_count": 0,
+    "compiled_files": [
+      "run_all.py",
+      "engine/__init__.py",
+      "engine/decision_engine.py",
+      "engine/extractors.py",
+      "engine/matching.py",
+      "engine/types.py",
+      "synthetic_cases/__init__.py",
+      "synthetic_cases/cases.py",
+      "tests/test_hungarian_matching.py",
+      "tests/test_remediation_regression.py",
+      "tests/test_safety_invariants.py",
+      "tests/test_synthetic_suite.py"
+    ],
+    "failed_files": []
+  },
+  "synthetic_suite": {
+    "suite_name": "E1.1 Synthetic Benchmark Suite (TC_01 to TC_12)",
+    "total_cases": 12,
+    "passed_cases": 12,
+    "failed_cases": 0,
+    "all_passed": true,
+    "results": [
+      {
+        "case_id": "TC_01",
+        "description": "Clean single medicine with cohesive structural envelope",
+        "input_text": "AUGMENTIN 1G 14 TABLETS",
+        "passed": true,
+        "actual": {
+          "entity_type": "MEDICINE_ROW",
+          "count_class": "SINGLE_MEDICINE",
+          "boundary_status": "NO_SPLIT_REQUIRED",
+          "reconstruction_status": "RECONSTRUCTED_SINGLE",
+          "hrs_score": 0.0,
+          "s_norm": 0.0,
+          "w_active": 0.9,
+          "p_conflict": 0.0,
+          "s_env": 1.0,
+          "n_multi": 0,
+          "precedence_path": "Step 5: Definitive Singleness Gate",
+          "reconstructed_spans": [
+            [
+              0,
+              23,
+              "AUGMENTIN 1G 14 TABLETS"
+            ]
+          ],
+          "decision_reasons": [
+            "Step 5: Low HRS, cohesive structural envelope (S_env=1.0), zero multi-evidence, zero conflict."
+          ]
+        },
+        "expected": {
+          "entity_type": "MEDICINE_ROW",
+          "count_class": "SINGLE_MEDICINE",
+          "boundary_status": "NO_SPLIT_REQUIRED",
+          "reconstruction_status": "RECONSTRUCTED_SINGLE",
+          "hrs_score": 0.0,
+          "w_active": 0.9,
+          "p_conflict": 0.0,
+          "precedence_path": "Step 5: Definitive Singleness Gate"
+        },
+        "checks": {
+          "pass_entity": true,
+          "pass_count": true,
+          "pass_boundary": true,
+          "pass_recon": true,
+          "pass_hrs": true,
+          "pass_w_act": true,
+          "pass_p_conf": true,
+          "pass_path": true
+        }
+      },
+      {
+        "case_id": "TC_02",
+        "description": "Multi-medicine with explicit slash separator and repeated dosage form",
+        "input_text": "PANADOL 500MG / BRUFEN 400MG",
+        "passed": true,
+        "actual": {
+          "entity_type": "MEDICINE_ROW",
+          "count_class": "MULTIPLE_MEDICINES",
+          "boundary_status": "DISENTANGLED_BOUNDARY",
+          "reconstruction_status": "RECONSTRUCTED_MULTI",
+          "hrs_score": 0.8333,
+          "s_norm": 0.8333,
+          "w_active": 0.9,
+          "p_conflict": 0.0,
+          "s_env": 0.0,
+          "n_multi": 3,
+          "precedence_path": "Step 4: Definitive Multiplicity Gate",
+          "reconstructed_spans": [
+            [
+              0,
+              13,
+              "PANADOL 500MG"
+            ],
+            [
+              16,
+              28,
+              "BRUFEN 400MG"
+            ]
+          ],
+          "decision_reasons": [
+            "Step 4: High HRS (0.8333) corroborated across 3 active groups with 2 confirmed entity spans."
+          ]
+        },
+        "expected": {
+          "entity_type": "MEDICINE_ROW",
+          "count_class": "MULTIPLE_MEDICINES",
+          "boundary_status": "DISENTANGLED_BOUNDARY",
+          "reconstruction_status": "RECONSTRUCTED_MULTI",
+          "hrs_score": 0.833,
+          "w_active": 0.9,
+          "p_conflict": 0.0,
+          "precedence_path": "Step 4: Definitive Multiplicity Gate"
+        },
+        "checks": {
+          "pass_entity": true,
+          "pass_count": true,
+          "pass_boundary": true,
+          "pass_recon": true,
+          "pass_hrs": true,
+          "pass_w_act": true,
+          "pass_p_conf": true,
+          "pass_path": true
+        }
+      },
+      {
+        "case_id": "TC_03",
+        "description": "Multi-medicine with spatial void and dual financial price columns",
+        "input_text": "AMARYL 2MG 10.50   GLUCO 500MG 8.20",
+        "passed": true,
+        "actual": {
+          "entity_type": "MEDICINE_ROW",
+          "count_class": "PROVISIONAL_COUNT",
+          "boundary_status": "DISENTANGLED_BOUNDARY",
+          "reconstruction_status": "PROVISIONAL_RECONSTRUCTION",
+          "hrs_score": 0.5,
+          "s_norm": 0.5,
+          "w_active": 0.9,
+          "p_conflict": 0.0,
+          "s_env": 0.0,
+          "n_multi": 2,
+          "precedence_path": "Step 6: Residual Provisional State",
+          "reconstructed_spans": [
+            [
+              0,
+              16,
+              "AMARYL 2MG 10.50"
+            ],
+            [
+              19,
+              35,
+              "GLUCO 500MG 8.20"
+            ]
+          ],
+          "decision_reasons": [
+            "Step 6: Intermediate evidence capacity; delegated to clinical review."
+          ]
+        },
+        "expected": {
+          "entity_type": "MEDICINE_ROW",
+          "count_class": "PROVISIONAL_COUNT",
+          "boundary_status": "DISENTANGLED_BOUNDARY",
+          "reconstruction_status": "PROVISIONAL_RECONSTRUCTION",
+          "hrs_score": 0.5,
+          "w_active": 0.9,
+          "p_conflict": 0.0,
+          "precedence_path": "Step 6: Residual Provisional State"
+        },
+        "checks": {
+          "pass_entity": true,
+          "pass_count": true,
+          "pass_boundary": true,
+          "pass_recon": true,
+          "pass_hrs": true,
+          "pass_w_act": true,
+          "pass_p_conf": true,
+          "pass_path": true
+        }
+      },
+      {
+        "case_id": "TC_04",
+        "description": "Chemical combination with conjunction symbol and shared strength (active conflict)",
+        "input_text": "AMOXICILLIN + CLAVULANIC 625MG",
+        "passed": true,
+        "actual": {
+          "entity_type": "MEDICINE_ROW",
+          "count_class": "PROVISIONAL_COUNT",
+          "boundary_status": "ABSTAIN_UNRESOLVED_CONFLICT",
+          "reconstruction_status": "ABSTAIN_SEGMENTATION",
+          "hrs_score": 0.0,
+          "s_norm": 0.2667,
+          "w_active": 0.9,
+          "p_conflict": 0.4,
+          "s_env": 1.0,
+          "n_multi": 1,
+          "precedence_path": "Step 3: Active Conflict Gate",
+          "reconstructed_spans": [],
+          "decision_reasons": [
+            "Step 3: Active conflict detected (Multi-evidence=0.800, P_conflict=0.400). Cannot certify without dictionary."
+          ]
+        },
+        "expected": {
+          "entity_type": "MEDICINE_ROW",
+          "count_class": "PROVISIONAL_COUNT",
+          "boundary_status": "ABSTAIN_UNRESOLVED_CONFLICT",
+          "reconstruction_status": "ABSTAIN_SEGMENTATION",
+          "hrs_score": 0.0,
+          "w_active": 0.9,
+          "p_conflict": 0.4,
+          "precedence_path": "Step 3: Active Conflict Gate"
+        },
+        "checks": {
+          "pass_entity": true,
+          "pass_count": true,
+          "pass_boundary": true,
+          "pass_recon": true,
+          "pass_hrs": true,
+          "pass_w_act": true,
+          "pass_p_conf": true,
+          "pass_path": true
+        }
+      },
+      {
+        "case_id": "TC_05",
+        "description": "Degraded OCR with physical vertical line stacking in raster",
+        "input_text": "CLAVAMOX 625MG\nPANADOL EXT",
+        "passed": true,
+        "actual": {
+          "entity_type": "MEDICINE_ROW",
+          "count_class": "PROVISIONAL_COUNT",
+          "boundary_status": "PROVISIONAL_BOUNDARY",
+          "reconstruction_status": "PROVISIONAL_RECONSTRUCTION",
+          "hrs_score": 0.2059,
+          "s_norm": 0.2059,
+          "w_active": 0.4857,
+          "p_conflict": 0.0,
+          "s_env": 1.0,
+          "n_multi": 1,
+          "precedence_path": "Step 6: Residual Provisional State",
+          "reconstructed_spans": [
+            [
+              0,
+              14,
+              "CLAVAMOX 625MG"
+            ],
+            [
+              15,
+              26,
+              "PANADOL EXT"
+            ]
+          ],
+          "decision_reasons": [
+            "Step 6: Intermediate evidence capacity; delegated to clinical review."
+          ]
+        },
+        "expected": {
+          "entity_type": "MEDICINE_ROW",
+          "count_class": "PROVISIONAL_COUNT",
+          "boundary_status": "PROVISIONAL_BOUNDARY",
+          "reconstruction_status": "PROVISIONAL_RECONSTRUCTION",
+          "hrs_score": 0.206,
+          "w_active": 0.486,
+          "p_conflict": 0.0,
+          "precedence_path": "Step 6: Residual Provisional State"
+        },
+        "checks": {
+          "pass_entity": true,
+          "pass_count": true,
+          "pass_boundary": true,
+          "pass_recon": true,
+          "pass_hrs": true,
+          "pass_w_act": true,
+          "pass_p_conf": true,
+          "pass_path": true
+        }
+      },
+      {
+        "case_id": "TC_06",
+        "description": "Fused text with repeated strengths and zero spatial/punctuation delimiters",
+        "input_text": "CATAFLAM50MGVOLTAREN100MG",
+        "passed": true,
+        "actual": {
+          "entity_type": "MEDICINE_ROW",
+          "count_class": "PROVISIONAL_COUNT",
+          "boundary_status": "ABSTAIN_UNSUPPORTED_BOUNDARY",
+          "reconstruction_status": "ABSTAIN_SEGMENTATION",
+          "hrs_score": 0.2222,
+          "s_norm": 0.2222,
+          "w_active": 0.9,
+          "p_conflict": 0.0,
+          "s_env": 0.0,
+          "n_multi": 1,
+          "precedence_path": "Step 6: Residual Provisional State",
+          "reconstructed_spans": [],
+          "decision_reasons": [
+            "Step 6: Intermediate evidence capacity; delegated to clinical review."
+          ]
+        },
+        "expected": {
+          "entity_type": "MEDICINE_ROW",
+          "count_class": "PROVISIONAL_COUNT",
+          "boundary_status": "ABSTAIN_UNSUPPORTED_BOUNDARY",
+          "reconstruction_status": "ABSTAIN_SEGMENTATION",
+          "hrs_score": 0.222,
+          "w_active": 0.9,
+          "p_conflict": 0.0,
+          "precedence_path": "Step 6: Residual Provisional State"
+        },
+        "checks": {
+          "pass_entity": true,
+          "pass_count": true,
+          "pass_boundary": true,
+          "pass_recon": true,
+          "pass_hrs": true,
+          "pass_w_act": true,
+          "pass_p_conf": true,
+          "pass_path": true
+        }
+      },
+      {
+        "case_id": "TC_07",
+        "description": "Administrative non-medicine accounting header",
+        "input_text": "TOTAL AMOUNT DUE / CASH: 245.50",
+        "passed": true,
+        "actual": {
+          "entity_type": "NON_MEDICINE_TEXT",
+          "count_class": "NON_APPLICABLE",
+          "boundary_status": "NON_APPLICABLE",
+          "reconstruction_status": "NON_APPLICABLE",
+          "hrs_score": 0.0,
+          "s_norm": 0.0,
+          "w_active": 0.0,
+          "p_conflict": 0.0,
+          "s_env": 0.0,
+          "n_multi": 0,
+          "precedence_path": "Step 1: Entity Type Pre-emption",
+          "reconstructed_spans": [],
+          "decision_reasons": [
+            "Step 1: Administrative / Accounting non-medicine keywords detected."
+          ]
+        },
+        "expected": {
+          "entity_type": "NON_MEDICINE_TEXT",
+          "count_class": "NON_APPLICABLE",
+          "boundary_status": "NON_APPLICABLE",
+          "reconstruction_status": "NON_APPLICABLE",
+          "hrs_score": 0.0,
+          "w_active": 0.0,
+          "p_conflict": 0.0,
+          "precedence_path": "Step 1: Entity Type Pre-emption"
+        },
+        "checks": {
+          "pass_entity": true,
+          "pass_count": true,
+          "pass_boundary": true,
+          "pass_recon": true,
+          "pass_hrs": true,
+          "pass_w_act": true,
+          "pass_p_conf": true,
+          "pass_path": true
+        }
+      },
+      {
+        "case_id": "TC_08",
+        "description": "Bare unanchored single word without dosage envelope markers",
+        "input_text": "ASPIRIN",
+        "passed": true,
+        "actual": {
+          "entity_type": "MEDICINE_ROW",
+          "count_class": "PROVISIONAL_COUNT",
+          "boundary_status": "NO_SPLIT_REQUIRED",
+          "reconstruction_status": "PROVISIONAL_RECONSTRUCTION",
+          "hrs_score": 0.0,
+          "s_norm": 0.0,
+          "w_active": 0.9,
+          "p_conflict": 0.0,
+          "s_env": 0.0,
+          "n_multi": 0,
+          "precedence_path": "Step 6: Residual Provisional State",
+          "reconstructed_spans": [
+            [
+              0,
+              7,
+              "ASPIRIN"
+            ]
+          ],
+          "decision_reasons": [
+            "Step 6: Intermediate evidence capacity; delegated to clinical review."
+          ]
+        },
+        "expected": {
+          "entity_type": "MEDICINE_ROW",
+          "count_class": "PROVISIONAL_COUNT",
+          "boundary_status": "NO_SPLIT_REQUIRED",
+          "reconstruction_status": "PROVISIONAL_RECONSTRUCTION",
+          "hrs_score": 0.0,
+          "w_active": 0.9,
+          "p_conflict": 0.0,
+          "precedence_path": "Step 6: Residual Provisional State"
+        },
+        "checks": {
+          "pass_entity": true,
+          "pass_count": true,
+          "pass_boundary": true,
+          "pass_recon": true,
+          "pass_hrs": true,
+          "pass_w_act": true,
+          "pass_p_conf": true,
+          "pass_path": true
+        }
+      },
+      {
+        "case_id": "TC_09",
+        "description": "Triple stacked vertical medicine lines with subline baselines",
+        "input_text": "LIPITOR 20MG\nNORVASC 5MG\nCRESTOR 10MG",
+        "passed": true,
+        "actual": {
+          "entity_type": "MEDICINE_ROW",
+          "count_class": "PROVISIONAL_COUNT",
+          "boundary_status": "DISENTANGLED_BOUNDARY",
+          "reconstruction_status": "PROVISIONAL_RECONSTRUCTION",
+          "hrs_score": 0.3,
+          "s_norm": 0.3,
+          "w_active": 1.0,
+          "p_conflict": 0.0,
+          "s_env": 0.0,
+          "n_multi": 2,
+          "precedence_path": "Step 6: Residual Provisional State",
+          "reconstructed_spans": [
+            [
+              0,
+              12,
+              "LIPITOR 20MG"
+            ],
+            [
+              13,
+              24,
+              "NORVASC 5MG"
+            ],
+            [
+              25,
+              37,
+              "CRESTOR 10MG"
+            ]
+          ],
+          "decision_reasons": [
+            "Step 6: Intermediate evidence capacity; delegated to clinical review."
+          ]
+        },
+        "expected": {
+          "entity_type": "MEDICINE_ROW",
+          "count_class": "PROVISIONAL_COUNT",
+          "boundary_status": "DISENTANGLED_BOUNDARY",
+          "reconstruction_status": "PROVISIONAL_RECONSTRUCTION",
+          "hrs_score": 0.3,
+          "w_active": 1.0,
+          "p_conflict": 0.0,
+          "precedence_path": "Step 6: Residual Provisional State"
+        },
+        "checks": {
+          "pass_entity": true,
+          "pass_count": true,
+          "pass_boundary": true,
+          "pass_recon": true,
+          "pass_hrs": true,
+          "pass_w_act": true,
+          "pass_p_conf": true,
+          "pass_path": true
+        }
+      },
+      {
+        "case_id": "TC_10",
+        "description": "Multi-medicine separated by spaced hyphen dash and repeated strength",
+        "input_text": "CONCOR 5MG - LOPRESSOR 50MG",
+        "passed": true,
+        "actual": {
+          "entity_type": "MEDICINE_ROW",
+          "count_class": "MULTIPLE_MEDICINES",
+          "boundary_status": "DISENTANGLED_BOUNDARY",
+          "reconstruction_status": "RECONSTRUCTED_MULTI",
+          "hrs_score": 0.8,
+          "s_norm": 0.8,
+          "w_active": 0.9,
+          "p_conflict": 0.0,
+          "s_env": 0.0,
+          "n_multi": 3,
+          "precedence_path": "Step 4: Definitive Multiplicity Gate",
+          "reconstructed_spans": [
+            [
+              0,
+              10,
+              "CONCOR 5MG"
+            ],
+            [
+              13,
+              27,
+              "LOPRESSOR 50MG"
+            ]
+          ],
+          "decision_reasons": [
+            "Step 4: High HRS (0.8000) corroborated across 3 active groups with 2 confirmed entity spans."
+          ]
+        },
+        "expected": {
+          "entity_type": "MEDICINE_ROW",
+          "count_class": "MULTIPLE_MEDICINES",
+          "boundary_status": "DISENTANGLED_BOUNDARY",
+          "reconstruction_status": "RECONSTRUCTED_MULTI",
+          "hrs_score": 0.8,
+          "w_active": 0.9,
+          "p_conflict": 0.0,
+          "precedence_path": "Step 4: Definitive Multiplicity Gate"
+        },
+        "checks": {
+          "pass_entity": true,
+          "pass_count": true,
+          "pass_boundary": true,
+          "pass_recon": true,
+          "pass_hrs": true,
+          "pass_w_act": true,
+          "pass_p_conf": true,
+          "pass_path": true
+        }
+      },
+      {
+        "case_id": "TC_11",
+        "description": "Hyphenated brand name with embedded dosage ratio (active conflict)",
+        "input_text": "CO-DIOVAN 160/12.5MG 28 TAB",
+        "passed": true,
+        "actual": {
+          "entity_type": "MEDICINE_ROW",
+          "count_class": "PROVISIONAL_COUNT",
+          "boundary_status": "ABSTAIN_UNRESOLVED_CONFLICT",
+          "reconstruction_status": "ABSTAIN_SEGMENTATION",
+          "hrs_score": 0.0,
+          "s_norm": 0.1667,
+          "w_active": 0.9,
+          "p_conflict": 0.35,
+          "s_env": 1.0,
+          "n_multi": 1,
+          "precedence_path": "Step 3: Active Conflict Gate",
+          "reconstructed_spans": [],
+          "decision_reasons": [
+            "Step 3: Active conflict detected (Multi-evidence=0.500, P_conflict=0.350). Cannot certify without dictionary."
+          ]
+        },
+        "expected": {
+          "entity_type": "MEDICINE_ROW",
+          "count_class": "PROVISIONAL_COUNT",
+          "boundary_status": "ABSTAIN_UNRESOLVED_CONFLICT",
+          "reconstruction_status": "ABSTAIN_SEGMENTATION",
+          "hrs_score": 0.0,
+          "w_active": 0.9,
+          "p_conflict": 0.35,
+          "precedence_path": "Step 3: Active Conflict Gate"
+        },
+        "checks": {
+          "pass_entity": true,
+          "pass_count": true,
+          "pass_boundary": true,
+          "pass_recon": true,
+          "pass_hrs": true,
+          "pass_w_act": true,
+          "pass_p_conf": true,
+          "pass_path": true
+        }
+      },
+      {
+        "case_id": "TC_12",
+        "description": "Severely degraded raster noise below active measurement capacity floor",
+        "input_text": "~..X% 20M? // ??",
+        "passed": true,
+        "actual": {
+          "entity_type": "MEDICINE_ROW",
+          "count_class": "ABSTAIN_COUNT",
+          "boundary_status": "ABSTAIN_UNRESOLVED_CONFLICT",
+          "reconstruction_status": "ABSTAIN_SEGMENTATION",
+          "hrs_score": 0.0,
+          "s_norm": 0.0,
+          "w_active": 0.0,
+          "p_conflict": 0.0,
+          "s_env": 0.0,
+          "n_multi": 0,
+          "precedence_path": "Step 2: Capacity Noise Gate",
+          "reconstructed_spans": [],
+          "decision_reasons": [
+            "Step 2: Measurement capacity W_active (0.000000) < noise floor (0.3)."
+          ]
+        },
+        "expected": {
+          "entity_type": "MEDICINE_ROW",
+          "count_class": "ABSTAIN_COUNT",
+          "boundary_status": "ABSTAIN_UNRESOLVED_CONFLICT",
+          "reconstruction_status": "ABSTAIN_SEGMENTATION",
+          "hrs_score": 0.0,
+          "w_active": 0.0,
+          "p_conflict": 0.0,
+          "precedence_path": "Step 2: Capacity Noise Gate"
+        },
+        "checks": {
+          "pass_entity": true,
+          "pass_count": true,
+          "pass_boundary": true,
+          "pass_recon": true,
+          "pass_hrs": true,
+          "pass_w_act": true,
+          "pass_p_conf": true,
+          "pass_path": true
+        }
+      }
+    ]
+  },
+  "hungarian_suite": {
+    "suite_name": "Hungarian Augmented Block Matrix Tests",
+    "all_passed": true,
+    "tests": [
+      {
+        "test_name": "T1: True Partial Matching (m=n=2, only 1 valid edge)",
+        "passed": true,
+        "matched_pairs": [
+          [
+            0,
+            0,
+            1.0
+          ]
+        ],
+        "unmatched_p": [
+          1
+        ],
+        "unmatched_g": [
+          1
+        ]
+      },
+      {
+        "test_name": "T2: Cardinality Dominance (M* maximizes match count)",
+        "passed": true,
+        "matched_pairs": [
+          [
+            0,
+            0,
+            1.0
+          ],
+          [
+            1,
+            1,
+            1.0
+          ]
+        ]
+      },
+      {
+        "test_name": "T3: Zero Valid Matches (Clean All-Slack Pairing)",
+        "passed": true,
+        "unmatched_p": [
+          0,
+          1
+        ],
+        "unmatched_g": [
+          0,
+          1
+        ]
+      },
+      {
+        "test_name": "T4: Metrics Calculation (P=0.5, R=0.5, F1=0.5)",
+        "passed": true,
+        "metrics": {
+          "tp": 1,
+          "fp": 1,
+          "fn": 1,
+          "precision": 0.5,
+          "recall": 0.5,
+          "recall_span_tpr": 0.5,
+          "f1": 0.5
+        }
+      },
+      {
+        "test_name": "T5: IoU Boundary Rejection (IoU=0.89996 < 0.90 strictly rejected)",
+        "passed": true,
+        "iou_calculated": 0.89996,
+        "matched_count": 0
+      },
+      {
+        "test_name": "T6: IoU Boundary Acceptance (IoU=0.90000 == 0.90 accepted)",
+        "passed": true,
+        "iou_calculated": 0.9,
+        "matched_count": 1
+      },
+      {
+        "test_name": "T7: Empty Inputs Handling (Clean Zero Returns)",
+        "passed": true
+      },
+      {
+        "test_name": "T8: Unbalanced Dimensions (m=3, n=1 with P2 <-> G1)",
+        "passed": true
+      }
+    ]
+  },
+  "safety_invariants_suite": {
+    "suite_name": "E1.1 Safety and Architectural Invariants Verification",
+    "all_passed": true,
+    "total_invariants": 10,
+    "passed_invariants": 10,
+    "results": [
+      {
+        "invariant": "INV_01: Zero Single Medicine under Active Conflict",
+        "passed": true,
+        "detail": "Verified that P_conflict > 0 unconditionally blocks SINGLE_MEDICINE."
+      },
+      {
+        "invariant": "INV_02: Six Prerequisites Strict Enforcement for Single",
+        "passed": true,
+        "detail": "Verified that failing S_env, having multi-evidence, or low capacity prevents SINGLE_MEDICINE."
+      },
+      {
+        "invariant": "INV_03: Multi-Facet Heuristic Corroboration Guard for Multiple",
+        "passed": true,
+        "detail": "Verified that single-group strength pattern cannot emit MULTIPLE_MEDICINES without Multi-Facet Heuristic Corroboration (N_multi >= 2)."
+      },
+      {
+        "invariant": "INV_04: Physical Cut Support Mandate for Boundaries",
+        "passed": true,
+        "detail": "Verified that fused string without whitespace/punctuation abstains from boundary placement."
+      },
+      {
+        "invariant": "INV_05: Tri-Partite Character Integrity & Reversibility Verification",
+        "passed": true,
+        "tested_reconstructions": 7,
+        "detail": "Verified across 7 reconstructed outputs: (1) 100% bitwise reversibility from entities + delimiters, (2) zero chars dropped, (3) zero phantom chars added, (4) order preserved."
+      },
+      {
+        "invariant": "INV_06: Geometric Provenance Categorical Separation & Zero Defaulting",
+        "passed": true,
+        "detail": "Verified that GEOM_UNOBSERVED (missing image_crop) and GEOM_OBSERVED_ZERO_QUALITY (measured crop with zero quality) are strictly separated."
+      },
+      {
+        "invariant": "INV_07: Output State Compatibility Axiom Compliance",
+        "passed": true,
+        "detail": "Verified that all 12 test outputs map to permitted canonical states with zero axiom violations."
+      },
+      {
+        "invariant": "INV_08: Absolute Deterministic Idempotence",
+        "passed": true,
+        "detail": "Verified 100% bitwise deterministic repeatability across multiple engine invocations."
+      },
+      {
+        "invariant": "INV_09: Strict Ground Truth Isolation Guard",
+        "passed": true,
+        "detail": "Verified that all package Python source files (engine, synthetic_cases, tests, root) contain zero references or imports of Ground Truth files."
+      },
+      {
+        "invariant": "INV_10: Expanded AST Deep Sandbox Audit (engine/ core)",
+        "passed": true,
+        "detail": "Verified via AST analysis that 100% of engine/ core modules are pure in-memory functions with zero disk file operations, zero dynamic execution (eval/exec), and zero unauthorized imports."
+      }
+    ]
+  },
+  "remediation_regression_suite": {
+    "suite_name": "Engineering Remediation Regression Suite Round 5",
+    "total_tests": 14,
+    "passed_tests": 14,
+    "failed_tests": 0,
+    "all_passed": true,
+    "pass_rate": 1.0,
+    "results": [
+      {
+        "test_name": "REG_01: Absence of OCR Boxes with Valid Image (q_aspect=0.0, GEOM_UNOBSERVED)",
+        "passed": true,
+        "q_asp_none": 0.0,
+        "g5_q_geo": 0.0,
+        "g5_state": "GEOM_UNOBSERVED"
+      },
+      {
+        "test_name": "REG_02: OCR Boxes Missing Y Coordinates (Strictly Unobserved)",
+        "passed": true,
+        "score": 0.0,
+        "status": "UNOBSERVED",
+        "reason": "missing_y_coordinates_for_line_detection"
+      },
+      {
+        "test_name": "REG_03: Multi-Line Boxes Naturally Overlapping Horizontally (Line Grouping)",
+        "passed": true,
+        "q_aspect": 1.0,
+        "status": "VALID",
+        "lines_detected": 2
+      },
+      {
+        "test_name": "REG_04: Absence of d_med in Indentation Offset (Zero Static Fallback)",
+        "passed": true,
+        "score_no_dmed": 0.0,
+        "status_no_dmed": "UNOBSERVED",
+        "score_with_dmed": 0.8
+      },
+      {
+        "test_name": "REG_05: Absence of Skew Angle Measurement (Pure Pixel Geometry)",
+        "passed": true,
+        "skew_blank": null,
+        "skew_tiny": null
+      },
+      {
+        "test_name": "REG_06: Single-Line Image Crop Separation Rejection (GEOM_UNOBSERVED)",
+        "passed": true,
+        "state_center": "GEOM_UNOBSERVED",
+        "state_top": "GEOM_UNOBSERVED",
+        "state_bottom": "GEOM_UNOBSERVED"
+      },
+      {
+        "test_name": "REG_07: Multi-Line Image Crop with Measurable Inter-Line Gaps",
+        "passed": true,
+        "band_count": 2,
+        "line_gap": 6.0,
+        "q_geo": 1.0,
+        "state": "GEOM_OBSERVED_VALID"
+      },
+      {
+        "test_name": "REG_08: Multiplicity Proven with Zero Boundary Cuts (Operational Abstention)",
+        "passed": true,
+        "hrs_score": 0.7222,
+        "n_multi": 3,
+        "count_class": "MULTIPLE_MEDICINES",
+        "boundary_status": "ABSTAIN_UNSUPPORTED_BOUNDARY",
+        "spans_count": 0
+      },
+      {
+        "test_name": "REG_09: Prohibition of MULTIPLE_MEDICINES Claim with Single Reconstructed Entity",
+        "passed": true,
+        "caught_contradiction": true
+      },
+      {
+        "test_name": "REG_10: Delimiter Extraction, Overlap Merging, and Constituent Provenance",
+        "passed": true,
+        "delims_count": 1,
+        "merged_has_constituents": true
+      },
+      {
+        "test_name": "REG_11: Operational Abstention Under Insufficient Measurement Capacity",
+        "passed": true,
+        "w_active": 0.1286,
+        "count_class": "ABSTAIN_COUNT"
+      },
+      {
+        "test_name": "REG_12: Multi-Axis Decision Output Consistency & Compatibility Matrix",
+        "passed": true,
+        "ok_single": true,
+        "ok_multi": true
+      },
+      {
+        "test_name": "REG_13: Protection of Ratios (160/12.5MG), Hyphens, and Compound Formulations",
+        "passed": true,
+        "false_delims_count": 0,
+        "p_ratio": 0.35
+      },
+      {
+        "test_name": "REG_14: Exact Character-Level Verbatim Text Preservation & Mutation Sensitivity",
+        "passed": true,
+        "perfect_reversibility": true,
+        "mutation_detected": true
+      }
+    ]
+  }
+}

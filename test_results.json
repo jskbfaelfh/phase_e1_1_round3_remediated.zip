@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-11-08T16:49:10.473764",
-  "overall_status": "ROUND_4_REMEDIATION_ALL_PASS",
+  "timestamp": "2026-11-11T11:09:58.245179",
+  "overall_status": "ROUND_5_REMEDIATION_ALL_PASS",
   "syntax_verification": {
     "all_passed": true,
     "compiled_count": 12,
@@ -107,7 +107,7 @@
             ]
           ],
           "decision_reasons": [
-            "Step 4: High HRS (0.8333) corroborated via Multi-Facet Heuristic Corroboration across 3 active groups (['G1_SYNTACTIC', 'G2_SPATIAL', 'G3_ENVELOPE'])."
+            "Step 4: High HRS (0.8333) corroborated across 3 active groups with 2 confirmed entity spans."
           ]
         },
         "expected": {
@@ -506,7 +506,7 @@
             ]
           ],
           "decision_reasons": [
-            "Step 4: High HRS (0.8000) corroborated via Multi-Facet Heuristic Corroboration across 3 active groups (['G1_SYNTACTIC', 'G2_SPATIAL', 'G3_ENVELOPE'])."
+            "Step 4: High HRS (0.8000) corroborated across 3 active groups with 2 confirmed entity spans."
           ]
         },
         "expected": {
@@ -762,108 +762,105 @@
     ]
   },
   "remediation_regression_suite": {
-    "suite_name": "Engineering Remediation Regression Suite Round 4 (12 Checks)",
+    "suite_name": "Engineering Remediation Regression Suite Round 5",
+    "total_tests": 14,
+    "passed_tests": 14,
+    "failed_tests": 0,
     "all_passed": true,
-    "total_tests": 12,
-    "passed_tests": 12,
+    "pass_rate": 1.0,
     "results": [
       {
-        "test_name": "REG_01: Zero Syntax & Runtime Errors Compilation",
+        "test_name": "REG_01: Absence of OCR Boxes with Valid Image (q_aspect=0.0, GEOM_UNOBSERVED)",
         "passed": true,
-        "compiled_count": 12,
-        "detail": "Successfully compiled 12 Python source files with zero syntax errors."
+        "q_asp_none": 0.0,
+        "g5_q_geo": 0.0,
+        "g5_state": "GEOM_UNOBSERVED"
       },
       {
-        "test_name": "REG_02: Zero Measurement Fabrication in Non-Medicine Path",
+        "test_name": "REG_02: OCR Boxes Missing Y Coordinates (Strictly Unobserved)",
         "passed": true,
-        "w_active": 0.0,
-        "geom_state": "GEOM_UNOBSERVED",
-        "detail": "Verified that Step 1 pre-emption emits honest unmeasured values (W_active=0.0, GEOM_UNOBSERVED)."
+        "score": 0.0,
+        "status": "UNOBSERVED",
+        "reason": "missing_y_coordinates_for_line_detection"
       },
       {
-        "test_name": "REG_03: Canonical Output State Compatibility Enforcement",
+        "test_name": "REG_03: Multi-Line Boxes Naturally Overlapping Horizontally (Line Grouping)",
         "passed": true,
-        "canonical_state_count": 10,
-        "detail": "Verified that CANONICAL_VALID_STATES contains exactly 10 authorized states and invalid states raise ValueError."
+        "q_aspect": 1.0,
+        "status": "VALID",
+        "lines_detected": 2
       },
       {
-        "test_name": "REG_04: Strict Geometric Provenance Categorical Separation",
+        "test_name": "REG_04: Absence of d_med in Indentation Offset (Zero Static Fallback)",
         "passed": true,
-        "unobserved_none": "GEOM_UNOBSERVED",
-        "unobserved_single": "GEOM_UNOBSERVED",
-        "zero_quality": "GEOM_OBSERVED_ZERO_QUALITY",
-        "valid_multiline": "GEOM_OBSERVED_VALID"
+        "score_no_dmed": 0.0,
+        "status_no_dmed": "UNOBSERVED",
+        "score_with_dmed": 0.8
       },
       {
-        "test_name": "REG_05: G5 Pixel Evidence Mandate (7 Image Cases & Margin Independence Proof)",
+        "test_name": "REG_05: Absence of Skew Angle Measurement (Pure Pixel Geometry)",
         "passed": true,
-        "margin_indep_ok": true,
-        "two_clear_ok": true,
-        "two_small_ok": true,
-        "blank_ok": true,
-        "corrupt_ok": true,
-        "meta_bypass_ok": true
+        "skew_blank": null,
+        "skew_tiny": null
       },
       {
-        "test_name": "REG_06: Multiplicative Q_geo & q_aspect Bounding Box Evaluation (7 Aspect Cases)",
+        "test_name": "REG_06: Single-Line Image Crop Separation Rejection (GEOM_UNOBSERVED)",
         "passed": true,
-        "asp_1_valid": true,
-        "asp_2_touching": true,
-        "asp_3_clipped": true,
-        "asp_4_overlap": true,
-        "asp_5_degen": true,
-        "asp_6_unobserved": true,
-        "asp_7_crop_fallback": true,
-        "mult_prod_ok": true
+        "state_center": "GEOM_UNOBSERVED",
+        "state_top": "GEOM_UNOBSERVED",
+        "state_bottom": "GEOM_UNOBSERVED"
       },
       {
-        "test_name": "REG_07: G2 Bounding Box Rejection & Zero Defaulting Strict Enforcement",
+        "test_name": "REG_07: Multi-Line Image Crop with Measurable Inter-Line Gaps",
         "passed": true,
-        "valid_count": 2,
-        "rejected_count": 8,
-        "d_med": 8.0
+        "band_count": 2,
+        "line_gap": 6.0,
+        "q_geo": 1.0,
+        "state": "GEOM_OBSERVED_VALID"
       },
       {
-        "test_name": "REG_08: G2 EVID_06 Indentation Offset (Physical Box Coordinates Derived)",
+        "test_name": "REG_08: Multiplicity Proven with Zero Boundary Cuts (Operational Abstention)",
         "passed": true,
-        "evid_06_equal": 0.0,
-        "evid_06_indented": 0.8,
-        "meta_invariance_ok": true,
-        "coord_sensitivity_ok": true,
-        "no_boxes_ok": true
+        "hrs_score": 0.7222,
+        "n_multi": 3,
+        "count_class": "MULTIPLE_MEDICINES",
+        "boundary_status": "ABSTAIN_UNSUPPORTED_BOUNDARY",
+        "spans_count": 0
       },
       {
-        "test_name": "REG_09: Non-Preemptive Delimiter Extraction, Constituent Tracking & Protection",
+        "test_name": "REG_09: Prohibition of MULTIPLE_MEDICINES Claim with Single Reconstructed Entity",
         "passed": true,
-        "comma_not_split": true,
-        "plus_conflict_not_split": true,
-        "hyphen_brand_not_split": true,
-        "range_not_split": true,
-        "ratio_protected": true,
+        "caught_contradiction": true
+      },
+      {
+        "test_name": "REG_10: Delimiter Extraction, Overlap Merging, and Constituent Provenance",
+        "passed": true,
+        "delims_count": 1,
         "merged_has_constituents": true
       },
       {
-        "test_name": "REG_10: Character Integrity Non-Vacuous Reversibility & Negative Mutation Detection",
+        "test_name": "REG_11: Operational Abstention Under Insufficient Measurement Capacity",
         "passed": true,
-        "tested_reconstructions": 7,
-        "total_expected": 7,
-        "mutation_detected": true,
-        "detail": "Verified 100% exact bitwise string reconstruction across all 7 test strings with mutation sensitivity confirmed."
+        "w_active": 0.1286,
+        "count_class": "ABSTAIN_COUNT"
       },
       {
-        "test_name": "REG_11: Structural Envelope Financial & Quantity Bounds Enforcement",
+        "test_name": "REG_12: Multi-Axis Decision Output Consistency & Compatibility Matrix",
         "passed": true,
-        "multi_price_s_env": 0.0,
-        "multi_qty_s_env": 0.0,
-        "clean_s_env": 1.0,
-        "ambig_protected": true
+        "ok_single": true,
+        "ok_multi": true
       },
       {
-        "test_name": "REG_12: Deep Package Isolation & In-Memory AST Sandbox Audit",
+        "test_name": "REG_13: Protection of Ratios (160/12.5MG), Hyphens, and Compound Formulations",
         "passed": true,
-        "engine_files_audited": 5,
-        "gt_isolation_clean": true,
-        "violations_count": 0
+        "false_delims_count": 0,
+        "p_ratio": 0.35
+      },
+      {
+        "test_name": "REG_14: Exact Character-Level Verbatim Text Preservation & Mutation Sensitivity",
+        "passed": true,
+        "perfect_reversibility": true,
+        "mutation_detected": true
       }
     ]
   }

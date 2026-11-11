@@ -1,7 +1,7 @@
-# Phase E1.1 Isolated Implementation & Verification Report — Round 4
-**Execution Timestamp:** `2026-11-08T16:49:10.474944`  
-**Execution Scope:** Phase E1.1 Multi-Medicine Disentanglement Isolated Engine (Remediation Round 4)  
-**Status:** `ROUND_4_REMEDIATION_IMPLEMENTED — INDEPENDENT_REAUDIT_REQUIRED`  
+# Phase E1.1 Isolated Implementation & Verification Report — Round 5
+**Execution Timestamp:** `2026-11-11T11:09:58.248000`  
+**Execution Scope:** Phase E1.1 Multi-Medicine Disentanglement Isolated Engine (Remediation Round 5)  
+**Status:** `ROUND_5_REMEDIATION_IMPLEMENTED — INDEPENDENT_REAUDIT_REQUIRED`  
 
 ---
 
@@ -10,7 +10,7 @@
 - **Synthetic Test Suite (TC_01 to TC_12):** 12/12 PASSED (100%)
 - **Hungarian Matching Suite:** 8/8 PASSED (100%)
 - **Safety and Architectural Invariants:** 10/10 PASSED (100%)
-- **Remediation Regression Suite (Round 4):** 12/12 PASSED (100%)
+- **Remediation Regression Suite (Round 5):** 14/14 PASSED (100%)
 - **Ground Truth Protection:** 100% Verified (Zero GT access, zero reading, zero fitting)
 - **Production Code Protection:** 100% Verified (Zero edits to production or DB)
 
@@ -34,21 +34,23 @@
 
 ---
 
-## 3. Engineering Remediation Regression Verification (Round 4)
+## 3. Engineering Remediation Regression Verification (Round 5)
 | Check ID & Name | Scope / Target Vulnerability | Result |
 |:---|:---|:---:|
-| `REG_01: Zero Syntax & Runtime Errors Compilation` | Remediation Round 4 Fix | **PASS** |
-| `REG_02: Zero Measurement Fabrication in Non-Medicine Path` | Remediation Round 4 Fix | **PASS** |
-| `REG_03: Canonical Output State Compatibility Enforcement` | Remediation Round 4 Fix | **PASS** |
-| `REG_04: Strict Geometric Provenance Categorical Separation` | Remediation Round 4 Fix | **PASS** |
-| `REG_05: G5 Pixel Evidence Mandate (7 Image Cases & Margin Independence Proof)` | Remediation Round 4 Fix | **PASS** |
-| `REG_06: Multiplicative Q_geo & q_aspect Bounding Box Evaluation (7 Aspect Cases)` | Remediation Round 4 Fix | **PASS** |
-| `REG_07: G2 Bounding Box Rejection & Zero Defaulting Strict Enforcement` | Remediation Round 4 Fix | **PASS** |
-| `REG_08: G2 EVID_06 Indentation Offset (Physical Box Coordinates Derived)` | Remediation Round 4 Fix | **PASS** |
-| `REG_09: Non-Preemptive Delimiter Extraction, Constituent Tracking & Protection` | Remediation Round 4 Fix | **PASS** |
-| `REG_10: Character Integrity Non-Vacuous Reversibility & Negative Mutation Detection` | Remediation Round 4 Fix | **PASS** |
-| `REG_11: Structural Envelope Financial & Quantity Bounds Enforcement` | Remediation Round 4 Fix | **PASS** |
-| `REG_12: Deep Package Isolation & In-Memory AST Sandbox Audit` | Remediation Round 4 Fix | **PASS** |
+| `REG_01: Absence of OCR Boxes with Valid Image (q_aspect=0.0, GEOM_UNOBSERVED)` | Remediation Round 5 Fix | **PASS** |
+| `REG_02: OCR Boxes Missing Y Coordinates (Strictly Unobserved)` | Remediation Round 5 Fix | **PASS** |
+| `REG_03: Multi-Line Boxes Naturally Overlapping Horizontally (Line Grouping)` | Remediation Round 5 Fix | **PASS** |
+| `REG_04: Absence of d_med in Indentation Offset (Zero Static Fallback)` | Remediation Round 5 Fix | **PASS** |
+| `REG_05: Absence of Skew Angle Measurement (Pure Pixel Geometry)` | Remediation Round 5 Fix | **PASS** |
+| `REG_06: Single-Line Image Crop Separation Rejection (GEOM_UNOBSERVED)` | Remediation Round 5 Fix | **PASS** |
+| `REG_07: Multi-Line Image Crop with Measurable Inter-Line Gaps` | Remediation Round 5 Fix | **PASS** |
+| `REG_08: Multiplicity Proven with Zero Boundary Cuts (Operational Abstention)` | Remediation Round 5 Fix | **PASS** |
+| `REG_09: Prohibition of MULTIPLE_MEDICINES Claim with Single Reconstructed Entity` | Remediation Round 5 Fix | **PASS** |
+| `REG_10: Delimiter Extraction, Overlap Merging, and Constituent Provenance` | Remediation Round 5 Fix | **PASS** |
+| `REG_11: Operational Abstention Under Insufficient Measurement Capacity` | Remediation Round 5 Fix | **PASS** |
+| `REG_12: Multi-Axis Decision Output Consistency & Compatibility Matrix` | Remediation Round 5 Fix | **PASS** |
+| `REG_13: Protection of Ratios (160/12.5MG), Hyphens, and Compound Formulations` | Remediation Round 5 Fix | **PASS** |
+| `REG_14: Exact Character-Level Verbatim Text Preservation & Mutation Sensitivity` | Remediation Round 5 Fix | **PASS** |
 
 ---
 

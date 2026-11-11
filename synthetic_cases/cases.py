@@ -163,6 +163,10 @@ SYNTHETIC_TEST_CASES: List[Dict[str, Any]] = [
             text="CLAVAMOX 625MG\nPANADOL EXT",
             ocr_confidence=0.55,
             image_crop=create_multiline_pixel_crop(lines=2),
+            bounding_boxes=[
+                {"text": "CLAVAMOX 625MG", "text_start": 0, "text_end": 14, "x0": 5.0, "x1": 120.0, "y0": 2.0, "y1": 10.0},
+                {"text": "PANADOL EXT", "text_start": 15, "text_end": 26, "x0": 5.0, "x1": 100.0, "y0": 16.0, "y1": 24.0}
+            ],
             raster_metadata={
                 "observed": True,
                 "skew_angle": 0.8,
@@ -249,6 +253,11 @@ SYNTHETIC_TEST_CASES: List[Dict[str, Any]] = [
             text="LIPITOR 20MG\nNORVASC 5MG\nCRESTOR 10MG",
             ocr_confidence=0.91,
             image_crop=create_multiline_pixel_crop(lines=3),
+            bounding_boxes=[
+                {"text": "LIPITOR 20MG", "text_start": 0, "text_end": 12, "x0": 5.0, "x1": 110.0, "y0": 2.0, "y1": 10.0},
+                {"text": "NORVASC 5MG", "text_start": 13, "text_end": 24, "x0": 5.0, "x1": 105.0, "y0": 16.0, "y1": 24.0},
+                {"text": "CRESTOR 10MG", "text_start": 25, "text_end": 37, "x0": 5.0, "x1": 115.0, "y0": 30.0, "y1": 38.0}
+            ],
             raster_metadata={
                 "observed": True,
                 "skew_angle": 0.2,
